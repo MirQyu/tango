@@ -1,0 +1,49 @@
+{% extends 'shopping/base.html' %}
+{% load static %} <!-- New line -->
+
+{% block title %}
+    Index
+{% endblock title%}
+
+{% block body_block %}
+{% if user.is_authenticated %}
+
+    <div class="page-header">
+        <h2>Rango says... hello {{ user.username }}!</h2>
+        {% else %}
+        <h2>Rango says... hello world!</h2>
+    </div>
+{% endif %}
+
+    <div class="container">
+    <div class="main center">
+
+    </div>
+    <div class="item-list">
+    <ul class="items clearfix">
+        {% if products %}
+            {% for product in products %}
+        <li class="item">
+            <a href="{{ product.detail }}" class="img" target="_blank">
+                <img scr="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            <div class="info">
+                <div class="price">{{ product.price }}</div>
+                <div class="name">
+                    <a href="{{ product.detail }}" target="_blank">{{ product.name }}</a>
+                </div>
+                <div class="department"></div>
+                <div class="place"></div>
+                <div class="school"><span>站长推荐</span></div>
+            </div>
+        </li>
+
+            {% endfor %}
+        {% else %}
+
+        {% endif %}
+    </ul>
+    </div>
+    </div>
+{% endblock body_block%}
+
